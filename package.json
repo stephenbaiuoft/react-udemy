@@ -8,11 +8,18 @@
     "npm": "6.x"
   },
   "scripts": {
-    "start":"node index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Stephen Bai",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
   }
 }
