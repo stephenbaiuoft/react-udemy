@@ -15,4 +15,12 @@ module.exports = (app) => {
         '/auth/google/callback',
         passport.authenticate('google') // use passport to authenticate the callback flow
     );
+
+    // route to get current_user
+    app.get(
+        '/api/current_user',
+        (req, res) => {
+            res.send(req.user);
+        }
+    );
 };
