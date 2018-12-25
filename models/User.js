@@ -10,3 +10,6 @@ const userSchema = new Schema( {
 // create a new collection called 'users' and use the userSchema if the collection does not exist
 // mongoose will not re-create if the 'users' collection exists already
 mongoose.model('users', userSchema);
+
+
+// adding?
