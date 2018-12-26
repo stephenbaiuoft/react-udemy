@@ -30,18 +30,14 @@ passport.use(
     callbackURL: '/auth/google/callback',
     proxy: true // letting google strategy know that you can trust the proxy(the proxy that heroku internally runs)
     }, 
-    (accessToken, refreshToken, profile, done ) => { // callback function that executes after the callback flow!
-        User.findOne({googleId: profile.id}) 
-            .then((existingUser) => { // js promise chained on then(func)
-                if (existingUser) {
-                    // a record already exists
-                    done(null, existingUser); // first arg -> error if any
-                } else {
-                    new User({googleId: profile.id})
-                    .save() // chain on then -> due to async name
-                    .then( user => done(null, user) ); // call back from save() method 
-                }
-            });
-
+    // changed to async + await syntax instead of promises, which is much easier/cleaner as compared to promises 
+    async (accessToken, refreshToken, profile, done ) => { // callback function that executes after the callback flow!
+        const existingUser = await User.findOne({googleId: profile.id});
+        if (existingUser) {
+            // a record already exists
+            done(null, existingUser); // first arg -> error if any
+        }
+        const user = await new User({googleId: profile.id});
+        done(null, user); // call back from save() method         
     })
-); 
+);
