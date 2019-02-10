@@ -30,6 +30,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// pass in app to authRoute function
 require('./routes/authRoutes')(app);
 
 // reads from environment variables
