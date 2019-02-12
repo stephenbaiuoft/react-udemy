@@ -34,10 +34,14 @@ passport.use(
     async (accessToken, refreshToken, profile, done ) => { // callback function that executes after the callback flow!
         const existingUser = await User.findOne({googleId: profile.id});
         if (existingUser) {
+            // console.log(existingUser);
             // a record already exists
             done(null, existingUser); // first arg -> error if any
         }
-        const user = await new User({googleId: profile.id});
-        done(null, user); // call back from save() method         
+        else {
+            // console.log("none new user was found");
+            const user = await new User({googleId: profile.id});
+            done(null, user); // call back from save() method   
+        }      
     })
 );
