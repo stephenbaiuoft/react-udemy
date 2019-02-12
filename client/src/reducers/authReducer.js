@@ -1,6 +1,7 @@
 // named with authReducer to indicate this file is of functions
 // this is a pure reducer function
 export default function(state= {}, action) {
+    console.log(action);
     switch(action.type) {
         default:
             return state;
