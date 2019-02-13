@@ -2,6 +2,7 @@ const passport = require('passport');
 
 module.exports = (app) => {
     // app.MethodName (Rounte Handler)
+    // this is invoking the passport authentication flow
     app.get(
         '/auth/google',
         passport.authenticate('google', // 'google' is GoogleStrategy default internal identifier
@@ -13,7 +14,10 @@ module.exports = (app) => {
     // route to handle requests coming to /auth/google/callback path
     app.get(
         '/auth/google/callback',
-        passport.authenticate('google') // use passport to authenticate the callback flow
+        // the relative /auth/google/callback that Google server calls will send back with some code
+        // passport.authenticate('google') is takes it from here
+        passport.authenticate('google') // use passport to authenticate the callback flow, which turns the code
+        // into getting user's profile
     );
 
     // route to get current_user

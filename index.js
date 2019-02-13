@@ -1,7 +1,8 @@
 const express = require('express'); // importing the express library, node.js is the runtime
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-const cookieSession = require('cookie-session'); 
+const cookieSession = require('cookie-session');  // enabling cookie which allows whatever we put in serializeUser so that 
+                                            // we can later use deserializeUser to get info
 const passport = require('passport');
 
 // bootstrap the database
