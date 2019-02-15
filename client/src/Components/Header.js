@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 // creates a react class component, so it extends a class Component
 // of course you can do a function component
@@ -6,7 +7,19 @@ import React, {Component} from 'react';
 
 // this file imports some css library
 class Header extends Component {
-    render() {
+    renderContent() {
+        switch (this.props.auth) {
+            case null:
+                return 'still deciding';
+            case false:
+                return 'im not logged in';
+            default:
+                return 'logged in';
+        }
+
+    }
+
+    render() {      
         return ( 
             <nav>
                 <div className="nav-wrapper">
@@ -15,7 +28,7 @@ class Header extends Component {
                  </a>
                  <ul className="right">
                     <li>
-                        <a>Login With Google</a>
+                        {this.renderContent()}
                     </li>
                  </ul>
                 </div>
@@ -25,5 +38,10 @@ class Header extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    // auth is the state type
+    return {auth: state.auth};
+}
+
 // export default Header --> important or we can't import it lolll
-export default Header;
+export default connect(mapStateToProps)(Header);
