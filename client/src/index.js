@@ -13,7 +13,7 @@ import reduxThunk from 'redux-thunk'; // reduxThunk dispatch actions
 import App from  './Components/App';
 import reducers from './reducers';
 
-const store = createStore(reducers, // place holder reducer
+const store = createStore(reducers, // reducers that takes actions and return state
                           {}, // initial store state (could be used for some server start up)
                           applyMiddleware(reduxThunk) // might be used later
                           );

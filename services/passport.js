@@ -41,7 +41,7 @@ passport.use(
     }, 
     // the call back after the code exchange with passport.authenticate('google')
     // changed to async + await syntax instead of promises, which is much easier/cleaner as compared to promises 
-    async (accessToken, refreshToken, profile, x ) => { // callback function that executes after the callback flow!
+    async (accessToken, refreshToken, profile, done ) => { // callback function that executes after the callback flow!
         const existingUser = await User.findOne({googleId: profile.id});
         if (existingUser) {
             // console.log(existingUser);
@@ -50,8 +50,8 @@ passport.use(
         }
         else {
             // console.log("none new user was found");
-            const user = await new User({googleId: profile.id});
-            done(null, user); // call back from save() method   
+            const user = await new User({googleId: profile.id}); 
+            done(null, user); // call back from save() method 
         }      
     })
 );
