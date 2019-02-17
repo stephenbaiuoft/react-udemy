@@ -3,6 +3,8 @@ import authReducer from './authReducer'; // default import
 
 // reducers that are tied to the store variable through
 // this combineReducers method
-export default combineReducers({
-    auth: authReducer    
-});
+export default combineReducers(
+    {
+       auth: authReducer    
+    }
+);

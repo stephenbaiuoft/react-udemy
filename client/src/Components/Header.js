@@ -12,9 +12,9 @@ class Header extends Component {
             case null:
                 return 'still deciding';
             case false:
-                return 'im not logged in';
+                return <li><a href='/auth/google'>Login With Google</a></li>;
             default:
-                return 'logged in';
+                return 'logged out';
         }
 
     }
@@ -38,6 +38,8 @@ class Header extends Component {
     }
 }
 
+// maps the state from combineReducer to the react, so
+// later in react component, we can have this.props.auth because we return {auth: state.xxxx}
 function mapStateToProps(state) {
     // auth is the state type
     return {auth: state.auth};

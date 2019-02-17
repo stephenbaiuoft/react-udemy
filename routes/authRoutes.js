@@ -16,8 +16,11 @@ module.exports = (app) => {
         '/auth/google/callback',
         // the relative /auth/google/callback that Google server calls will send back with some code
         // passport.authenticate('google') is takes it from here
-        passport.authenticate('google') // use passport to authenticate the callback flow, which turns the code
+        passport.authenticate('google'), // use passport to authenticate the callback flow, which turns the code
         // into getting user's profile
+        (req, res) => {
+            res.redirect('/surveys');
+        }
     );
 
     // route to get current_user

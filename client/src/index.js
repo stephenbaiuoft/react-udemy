@@ -11,7 +11,7 @@ import reduxThunk from 'redux-thunk'; // reduxThunk dispatch actions
 
 
 import App from  './Components/App';
-import reducers from './reducers';
+import reducers from './reducers'; // combineReducer --> all reducers combined into 1 object
 
 const store = createStore(reducers, // reducers that takes actions and return state
                           {}, // initial store state (could be used for some server start up)

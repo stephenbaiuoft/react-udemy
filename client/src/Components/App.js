@@ -35,4 +35,6 @@ class App extends Component {
     }
 };
 
+// actions inlcude the action creator, fetchUser, 
+// and connect makes it to the react-component
 export default connect(null, actions)(App); 

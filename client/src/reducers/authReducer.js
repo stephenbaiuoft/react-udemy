@@ -6,7 +6,7 @@ export default function(state= null, action) {
     console.log(action);
     switch(action.type) {
         case FETCH_USER:
-            return action.payload || false;
+            return action.payload || false; // so false or null
             // it was {type: FETCH_USER, payload: res.data}
         default:
             return state;
