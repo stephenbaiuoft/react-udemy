@@ -39,7 +39,7 @@ module.exports = (app) => {
             // logout() is also a function that passport automatically attach to request
             // so think of req as an object, and logout() is the method that passport attaches to req lol
             req.logout();
-            res.send(req.user);
+            res.redirect('/'); // redirect to root page
         }
     );
 };
