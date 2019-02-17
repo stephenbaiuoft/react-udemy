@@ -15,7 +15,8 @@ class Header extends Component {
             case false:
                 return <li><a href='/auth/google'>Login With Google</a></li>;
             default:
-                return <li><a href='/api/logout'>Log Out</a></li>;;
+                return <li><a href = '/api/logout'>Log Out</a></li>;; 
+                // can't use <Link> </Link> as other req.redirect doesn't work?
         }
 
     }
