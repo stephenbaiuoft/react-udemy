@@ -21,3 +21,6 @@ ReactDOM.render(
     <Provider store ={store}><App /></Provider>,  // provider tag binds store and updates the App element
     document.querySelector('#root') // select the element with ID root
 );
+
+console.log('STRIPE KEY IS', process.env.REACT_APP_STRIPE_KEY);
+console.log('ENV IS', process.env.NODE_ENV);
