@@ -12,4 +12,13 @@ export const fetchUser = () => async dispatch => {
         const res = await axios.get('/api/current_user'); // axios is an ajax request
         // then we can dispatch the res 
         dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info
-    };
+};
+
+// this is the action creator for payments
+export const handleToken = (token) => async dispatch => {
+    
+        // for /api/stripe, we probably need to verify this token or something, otherwise 
+        const res = await axios.post('/api/stripe', token); // axios is an ajax request
+        // then we can dispatch the res 
+        dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info
+};
