@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import Payments from './Payments';
 
 // creates a react class component, so it extends a class Component
 // of course you can do a function component
@@ -15,7 +16,10 @@ class Header extends Component {
             case false:
                 return <li><a href='/auth/google'>Login With Google</a></li>;
             default:
-                return <li><a href = '/api/logout'>Log Out</a></li>;; 
+                return [
+                    <li><Payments/></li>,
+                    <li><a href = '/api/logout'>Log Out</a></li>
+                ]; 
                 // can't use <Link> </Link> as other req.redirect doesn't work?
         }
 
@@ -32,9 +36,7 @@ class Header extends Component {
                 Emaily
                  </Link>
                  <ul className="right">
-                    <li>
-                        {this.renderContent()}
-                    </li>
+                    {this.renderContent()}
                  </ul>
                 </div>
             </nav>
