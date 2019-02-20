@@ -1,8 +1,11 @@
 const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
+const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = (app) => {
     app.post('/api/stripe',
+        requireLogin, // the middleware that checks for requireLogin logic 
+        
         async (req, res) => { // added async syntax because by default the stripe.charges.create
             //   has a callback function
             // console.log(req.body); req.body is bodyParse property as said in the doc
@@ -20,6 +23,10 @@ module.exports = (app) => {
             req.user.credits += 5;
             const user = await req.user.save(); // this saves the changes and updates the database
             // send back the new user data
+
+
+            // note you can have as many middlewares as you want, but
+            // you have to call res.send() at the last method
             res.send(user);
         });
 };

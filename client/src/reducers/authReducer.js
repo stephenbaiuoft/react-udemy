@@ -8,6 +8,7 @@ export default function(state= null, action) {
         case FETCH_USER:
             return action.payload || false; // so false or null
             // it was {type: FETCH_USER, payload: res.data}
+            // -> either null or action.payload which includes user data from fetchUser action creator
         default:
             return state;
     }
