@@ -4,6 +4,7 @@ const keys = require('../config/keys'); // do not need the extension
 const mongoose = require('mongoose');
 
 // this is getting the User collection from mongoose
+// as mongoose has already created the 'users' model in User.js file 
 const User = mongoose.model('users');
 
 

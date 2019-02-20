@@ -3,8 +3,12 @@ const Schema = mongoose.Schema; // take the property in mongoose, and assign to 
 // const { Schema } = mongoose; // ESMAC old version, same as the line ahead
 
 // take the Schema and create an instance of it
-const userSchema = new Schema( {
-    googleId: String
+const userSchema = new Schema({
+    googleId: String,
+    credits: {
+        type: Number,
+        default: 0
+    }
 });
 
 // create a new collection called 'users' and use the userSchema if the collection does not exist

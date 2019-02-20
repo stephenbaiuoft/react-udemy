@@ -16,7 +16,11 @@ module.exports = (app) => {
                 // tok_1E5B76KUOmv1PNzClYx5Iriq
             });
 
-            console.log(charge);
+            // user data is attached to request by passport module, deserializeUser part
+            req.user.credits += 5;
+            const user = await req.user.save(); // this saves the changes and updates the database
+            // send back the new user data
+            res.send(user);
         });
 };
 
