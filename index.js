@@ -4,6 +4,7 @@ const keys = require('./config/keys');
 const cookieSession = require('cookie-session');  // enabling cookie which allows whatever we put in serializeUser so that 
                                             // we can later use deserializeUser to get info
 const passport = require('passport');
+const bodyParser = require('body-parser');
 
 // bootstrap the database
 require('./models/User'); // loads the user.js is loaded  
@@ -18,6 +19,13 @@ mongoose.connect(keys.mongoURI, options);
 
 const app = express(); // this app object is used to set up configuration that runs the business logic
  
+
+// app.use  --> is how we hook up the middleware to react
+
+app.use (bodyParser.json()); // allows react to parse in post data as an object
+//, otherwise by default react won't see any post request with data read as object
+
+
 // config cookie session
 app.use(
     // cookieSession is a function? 
@@ -33,6 +41,7 @@ app.use(passport.session());
 
 // pass in app to authRoute function
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 // reads from environment variables
 // this is from the framework process
