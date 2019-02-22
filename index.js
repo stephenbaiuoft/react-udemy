@@ -43,6 +43,19 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
+// Routing in Production
+if (process.env.NODE_ENV === 'production') {
+    // Express will serve up production assets
+    // for example, the main.js file or main.css file 
+    // under the given directory, which would be anything you specify
+    app.use(express.static('client/build'));
+
+    const path = require('path');
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 // reads from environment variables
 // this is from the framework process
 const PORT = process.env.PORT || 5000;

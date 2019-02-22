@@ -22,4 +22,7 @@ export const handleToken = (token) => async dispatch => {
         const res = await axios.post('/api/stripe', token); // axios is an ajax request
         // then we can dispatch the res 
         dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info
+        
+        // due to type: FETCH_USER defined here, this would invoke the same pureReducer method
+        
 };
