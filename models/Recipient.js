@@ -6,7 +6,7 @@ const Schema = mongoose.Schema; // take the property in mongoose, and assign to 
 const recipientSchema = new Schema({
     email: String,
     responeded: {
-        type: boolean,
+        type: Boolean,
         default: false
     }
 });

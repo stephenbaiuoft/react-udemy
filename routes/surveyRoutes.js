@@ -16,7 +16,7 @@ module.exports = (app) => {
             subject, // abbreviated ES6 syntax
             body, 
             recipients: recipients.split(',').map(email => {  // split and return an array of objects
-                return {email: email}; 
+                return {email: email.trim() };  // use trim to get rid of white spaces
             }),
             _user: req.user.id,
             dateSent: Date.now()
