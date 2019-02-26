@@ -7,7 +7,8 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 
 // bootstrap the database
-require('./models/User'); // loads the user.js is loaded  
+require('./models/User'); // loads the User.js 
+require('./models/Survey'); // loads the Survey.js
 require('./services/passport'); // no exporting so no need to define module.exports = in passport.js
 
 
