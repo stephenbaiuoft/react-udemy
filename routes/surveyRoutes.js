@@ -10,6 +10,10 @@ const Survey = mongoose.model('surveys');
 
 // default ES6 of exporting javascript
 module.exports = (app) => {
+    app.get('/api/surveys/thanks', (req, res) => {
+        res.send('remember and have to do it 90 days');
+    });
+
     app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
         // read key values from req ES6 syntax
        const { title, subject, body, recipients } = req.body; 

@@ -1,3 +1,6 @@
+const keys = require('../../config/keys');
+const redirectDomain = keys.redirectDomain;
+
 // function React component 
 module.exports = (survey) => {
     // ${} template literals --> used in ``
@@ -11,10 +14,10 @@ module.exports = (survey) => {
                  <p>Please continuously work hard</p>
                  <p>${survey.body}</p>
                  <div>
-                  <a href="http://localhost:3000">Yes</a>
+                  <a href="${redirectDomain}/api/surveys/thanks">Yes</a>
                  </div>                    
                  <div>
-                  <a href="http://localhost:3000">Yes For Sure</a>
+                  <a href="${redirectDomain}/api/surveys/thanks">Yes For Sure</a>
                  </div> 
                 </div>
             </body>
