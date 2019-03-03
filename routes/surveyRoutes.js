@@ -10,7 +10,7 @@ const Survey = mongoose.model('surveys');
 
 // default ES6 of exporting javascript
 module.exports = (app) => {
-    app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
+    app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
         // read key values from req ES6 syntax
        const { title, subject, body, recipients } = req.body; 
         
@@ -26,6 +26,22 @@ module.exports = (app) => {
        });
 
        const mailer = new Mailer(survey, surveyTemplate(survey));
-       mailer.send();
+
+       try {
+        await mailer.send();
+        // save the survey --> note it's exactly how this survey schema is in the database
+        await survey.save();
+ 
+        // subtract 0.1 credits
+        req.user.credits -= 0.1; 
+        // update the user profile --> and of course get the updated user version
+        const user = await req.user.save();    
+        // send back the updated user --> s.t we know the credit has changed        
+        res.send(user);       
+       } catch (err) {
+        res.status(422).send(err);
+       }
+
+
     });
 };

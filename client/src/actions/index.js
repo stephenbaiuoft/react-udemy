@@ -26,3 +26,13 @@ export const handleToken = (token) => async dispatch => {
         // due to type: FETCH_USER defined here, this would invoke the same pureReducer method
         
 };
+
+
+// this is the action creator for payments
+export const handleSurveys = () => async dispatch => {
+    
+        // for /api/stripe, we probably need to verify this token or something, otherwise 
+        const res = await axios.post('/api/surveys'); // axios is an ajax request
+        // then we can dispatch the res 
+        dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info                
+};

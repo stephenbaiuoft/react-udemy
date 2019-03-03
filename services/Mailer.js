@@ -12,7 +12,7 @@ class Mailer extends helper.Mail {
         this.sgApi = sendgrid(keys.sendGridKey);
         // note helper is global object -> can be accessed within this file
         // this.from_email --> defining private class members 
-        this.from_email = new helper.Email('no-reply@gmail.com');
+        this.from_email = new helper.Email('no-reply@juwang.com');
         this.subject = subject;
         this.body = new helper.Content('text/html', content);
         this.recipients = this.formatAddresses(recipients);
@@ -62,7 +62,7 @@ class Mailer extends helper.Mail {
         });
 
         // now send to sgApi
-        const response = this.sgApi.API(request);
+        const response = await this.sgApi.API(request);
         return response;
     }
 
