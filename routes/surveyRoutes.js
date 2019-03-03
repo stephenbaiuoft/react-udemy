@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+const Mailer = require('../services/Mailer');
 
 // pull up the Survey schema from mongoose
 const Survey = mongoose.model('surveys');
+
 
 // default ES6 of exporting javascript
 module.exports = (app) => {
@@ -21,5 +24,8 @@ module.exports = (app) => {
             _user: req.user.id,
             dateSent: Date.now()
        });
+
+       const mailer = new Mailer(survey, surveyTemplate(survey));
+       mailer.send();
     });
 };

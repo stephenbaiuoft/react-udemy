@@ -43,6 +43,7 @@ app.use(passport.session());
 // pass in app to authRoute function
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // Routing in Production
 if (process.env.NODE_ENV === 'production') {

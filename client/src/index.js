@@ -9,9 +9,13 @@ import {Provider} from 'react-redux'; // the glue that tights redux to react and
 import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk'; // reduxThunk dispatch actions
 
-
 import App from  './Components/App';
 import reducers from './reducers'; // combineReducer --> all reducers combined into 1 object
+
+import axios from 'axios';
+window.axios = axios;
+
+
 
 const store = createStore(reducers, // reducers that takes actions and return state
                           {}, // initial store state (could be used for some server start up)
