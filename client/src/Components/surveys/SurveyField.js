@@ -1,10 +1,11 @@
 import React from 'react';
 
-export default ({input}) => {
+export default ({input, label}) => {
     // input={...input} -> syntax for passing all the properties input has to input tag
     return(
         <div>
-            <input {...input} />
+            <label>{label}</label>
+            <input {...input}  />
         </div>
     );
 };

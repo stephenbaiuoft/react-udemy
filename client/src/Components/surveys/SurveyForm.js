@@ -4,15 +4,30 @@ import { reduxForm, Field } from 'redux-form'; // Field is from redux-form
 
 import SurveyField from './SurveyField';
 
+const FIELDS = [
+    {label: 'Survey Title', name: 'title'},
+    {label: 'Subject Line', name: 'subject'},
+    {label: 'Email Body', name: 'body'},
+    {label: 'Recipient List', name: 'emails'}
+]
 // this.props.handleSubmit is from reduxForm lib
 class SurveyForm extends Component {
     // define a rendering survey fields function
     // component={SurveyField} --> let Field know that we are rendering it with SurveyField    
     renderSurveyFields() {
         return (
-            <div>
-                <Field type="text" name="title" component={SurveyField}/>
-            </div>
+            FIELDS.map(({label, name}) => {
+                // built-in map function, you need to call return yeah!!!
+                return (
+                    <Field 
+                        key={name}
+                        label={label}
+                        name={name}
+                        type="text"
+                        component={SurveyField}
+                    />
+                )
+            })
         );
     }
 
