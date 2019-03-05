@@ -9,7 +9,7 @@ import {Provider} from 'react-redux'; // the glue that tights redux to react and
 import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk'; // reduxThunk dispatch actions
 
-import App from  './Components/App';
+import App from  './components/App';
 import reducers from './reducers'; // combineReducer --> all reducers combined into 1 object
 
 import axios from 'axios';
