@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form'; // Field is from redux-form 
 // and it can render any HTML component
+import { Link } from 'react-router-dom';
 
 import SurveyField from './SurveyField';
 
@@ -37,7 +38,14 @@ class SurveyForm extends Component {
                 
                 <form onSubmit={this.props.handleSubmit((values)=> {console.log(values)}) }>
                     {this.renderSurveyFields()}
-                    <button type="submit">submit</button>
+                    <Link to="/surveys" class="red left btn waves-effect waves-light">
+                        Cancel
+                        <i class="material-icons right">cancel</i>
+                    </Link>
+                    <button class="waves-effect waves-light blue right btn" type="submit" name="action">
+                        Next
+                        <i class="material-icons right">navigate_next</i>
+                    </button>
                 </form>
 
             </div>
