@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form'; // Field is from redux-form 
 // and it can render any HTML component
 
+import SurveyField from './SurveyField';
+
+// this.props.handleSubmit is from reduxForm lib
 class SurveyForm extends Component {
+    // define a rendering survey fields function
+    renderSurveyFields() {
+        return (
+            <div>
+                <Field type="text" name="title" component={SurveyField}/>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div>
+                
                 <form onSubmit={this.props.handleSubmit((values)=> {console.log(values)}) }>
-                    <Field name="surveyTitle" type="text" component="input" />
+                    {this.renderSurveyFields()}
                     <button type="submit">submit</button>
                 </form>
 
