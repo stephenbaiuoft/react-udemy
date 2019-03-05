@@ -7,6 +7,7 @@ import SurveyField from './SurveyField';
 // this.props.handleSubmit is from reduxForm lib
 class SurveyForm extends Component {
     // define a rendering survey fields function
+    // component={SurveyField} --> let Field know that we are rendering it with SurveyField    
     renderSurveyFields() {
         return (
             <div>
