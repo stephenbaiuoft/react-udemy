@@ -42,13 +42,13 @@ class SurveyForm extends Component {
 
                     {this.renderSurveyFields()}
 
-                    <Link to="/surveys" class="red left btn waves-effect waves-light">
+                    <Link to="/surveys" className="red left btn waves-effect waves-light">
                         Cancel
-                        <i class="material-icons right">cancel</i>
+                        <i className="material-icons right">cancel</i>
                     </Link>
-                    <button class="waves-effect waves-light blue right btn" type="submit" name="action">
+                    <button className="waves-effect waves-light blue right btn" type="submit" name="action">
                         Next
-                        <i class="material-icons right">navigate_next</i>
+                        <i className="material-icons right">navigate_next</i>
                     </button>
                 </form>
 
@@ -63,7 +63,7 @@ class SurveyForm extends Component {
 function validate(values){
     // errors if not empty, then reduxForm will have the errors and you can display any
     const errors = {};
-    
+
     // errors.emails --> setting the attribute
     // values.emails --> getting the value content
     errors.emails = validateEmails(values.emails || '');    
