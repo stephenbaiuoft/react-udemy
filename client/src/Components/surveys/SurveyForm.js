@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form'; // Field is from redux-form 
 // and it can render any HTML component
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 import SurveyField from './SurveyField';
+import validateEmails from '../../utils/validateEmails';
 
 const FIELDS = [
     {label: 'Survey Title', name: 'title'},
@@ -23,7 +25,7 @@ class SurveyForm extends Component {
                     <Field 
                         key={name}
                         label={label}
-                        name={name}
+                        name={name} // note name prop is passed to values for this.props.handleSubmit
                         type="text"
                         component={SurveyField}
                     />
@@ -35,9 +37,11 @@ class SurveyForm extends Component {
     render() {
         return (
             <div>
-                
+
                 <form onSubmit={this.props.handleSubmit((values)=> {console.log(values)}) }>
+
                     {this.renderSurveyFields()}
+
                     <Link to="/surveys" class="red left btn waves-effect waves-light">
                         Cancel
                         <i class="material-icons right">cancel</i>
@@ -55,9 +59,28 @@ class SurveyForm extends Component {
     }
 }
 
+// need function keyword, but you don't need it within a class body hh
+function validate(values){
+    // errors if not empty, then reduxForm will have the errors and you can display any
+    const errors = {};
+    
+    // errors.emails --> setting the attribute
+    // values.emails --> getting the value content
+    errors.emails = validateEmails(values.emails || '');    
+    _.each(FIELDS, ({name, label}) => {
+        if (!values[name]) {
+            // errors[name] --> putting down the {key_variable: value_content} 
+            errors[name] = 'You must provide' + label;
+        }
+    }); 
+
+
+    return errors;
+}
 
 // reduxForm here is same as connect()(your_react_component) 
 // --> so react props can talk to the store
 export default reduxForm({
+    validate,
     form: 'surveyForm'
 })(SurveyForm); 
