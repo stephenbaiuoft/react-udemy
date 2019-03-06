@@ -1,13 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import formFields from './formFields';
+import _ from 'lodash';
 
 // define a functional jsx component
 // 因为SurveyFormReview是functional component 所以 this.props不工作
 // 所以argument就是deconstruct出来的 {onCancel} 放入SurveyFormReview的() parentheses 之中
-const SurveyFormReview = ( {onCancel} ) => {
+
+// 所以formValues 是从mapStateToProps return 出来的
+const SurveyFormReview = ( {onCancel, formValues} ) => {
+
+    const reviewFields = _.map(formFields, (field) => {
+        return (
+            <div key={field.name}>
+                <label>{field.label}</label>
+                <div>
+                    {formValues[field.name]}
+                </div>
+            </div>
+        );
+    });
+
     return (
         <div>
             <h5>Please confirm your results</h5>
+            <div  style={{ marginBottom: '20px' }}>
+                { reviewFields }
+            </div>
+            
             <button className="blue darken-3 btn-flat"
                 onClick={onCancel}>
                 Back
@@ -23,7 +43,7 @@ function mapStateToProps(state) {
     console.log(state); // for debugging
 
     // yeah --> state.form.surveyForm.values is where the FORM object stores all the values
-    return {surveyValues: state.form.surveyForm.values };
+    return {formValues: state.form.surveyForm.values };
 }
 
 // now your element can have all the props set up

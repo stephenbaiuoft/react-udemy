@@ -6,20 +6,15 @@ import _ from 'lodash';
 
 import SurveyField from './SurveyField';
 import validateEmails from '../../utils/validateEmails';
+import surveyFields from './formFields';
 
-const FIELDS = [
-    {label: 'Survey Title', name: 'title'},
-    {label: 'Subject Line', name: 'subject'},
-    {label: 'Email Body', name: 'body'},
-    {label: 'Recipient List', name: 'emails'}
-]
 // this.props.handleSubmit is from reduxForm lib
 class SurveyForm extends Component {
     // define a rendering survey fields function
     // component={SurveyField} --> let Field know that we are rendering it with SurveyField    
     renderSurveyFields() {
         return (
-            FIELDS.map(({label, name}) => {
+            surveyFields.map(({label, name}) => {
                 // built-in map function, you need to call return yeah!!!
                 return (
                     <Field 
@@ -66,7 +61,7 @@ function validate(values){
     // errors.emails --> setting the attribute
     // values.emails --> getting the value content
     errors.emails = validateEmails(values.emails || '');    
-    _.each(FIELDS, ({name, label}) => {
+    _.each(surveyFields, ({name, label}) => {
         if (!values[name]) {
             // errors[name] --> putting down the {key_variable: value_content} 
             errors[name] = 'You must provide' + label;
@@ -83,7 +78,7 @@ export default reduxForm({
     validate,
     form: 'surveyForm',
     //surveyForm is the key or the nameSpace 
-    
+
     destroyOnUnmount: false
 })(SurveyForm); 
 
