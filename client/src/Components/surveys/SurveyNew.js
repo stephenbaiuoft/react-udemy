@@ -16,7 +16,10 @@ class SurveyNew extends Component {
         if (this.state.showFormReview) {
             return (
                 <div>
-                    <SurveyFormReview />
+                    <SurveyFormReview 
+                    // onCancel --> callback prop and note 这里 SurveyFormReview is a function component!!
+                        onCancel = {() => {this.setState({showFormReview: false})}}
+                    />
                 </div>
             );
         }
