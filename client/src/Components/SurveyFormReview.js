@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // define a functional jsx component
 // 因为SurveyFormReview是functional component 所以 this.props不工作
@@ -17,4 +18,13 @@ const SurveyFormReview = ( {onCancel} ) => {
     );
 };
 
-export default SurveyFormReview;
+// mapStateToProps
+function mapStateToProps(state) {
+    console.log(state); // for debugging
+
+    // yeah --> state.form.surveyForm.values is where the FORM object stores all the values
+    return {surveyValues: state.form.surveyForm.values };
+}
+
+// now your element can have all the props set up
+export default connect(mapStateToProps)(SurveyFormReview);

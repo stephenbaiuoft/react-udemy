@@ -81,5 +81,11 @@ function validate(values){
 // --> so react props can talk to the store
 export default reduxForm({
     validate,
-    form: 'surveyForm'
+    form: 'surveyForm',
+    //surveyForm is the key or the nameSpace 
+    
+    destroyOnUnmount: false
 })(SurveyForm); 
+
+// for other JSX components, when you have connect(mapStateToProps)(jsx_component), 
+// --> you can then access state.form.surveyForm.values (which contains all values in your form)
