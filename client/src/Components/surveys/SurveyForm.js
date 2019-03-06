@@ -36,10 +36,8 @@ class SurveyForm extends Component {
 
     render() {
         return (
-            <div>
-
-                <form onSubmit={this.props.handleSubmit((values)=> {console.log(values)}) }>
-
+            <div>                    
+                <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
                     {this.renderSurveyFields()}
 
                     <Link to="/surveys" className="red left btn waves-effect waves-light">
