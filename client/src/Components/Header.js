@@ -19,7 +19,7 @@ class Header extends Component {
                 return [
                     <li key="1"><Payments/></li>,
                     <li key="3" style={ {margin: '0 10px'} }>
-                        Credits: {this.props.auth.credits}
+                        Credits: {this.props.auth.credits.toFixed(2)}
                     </li>,
                     <li key="2"><a href = '/api/logout'>Log Out</a></li>
                 ]; 

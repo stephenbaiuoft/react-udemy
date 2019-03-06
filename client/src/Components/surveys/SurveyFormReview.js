@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import formFields from './formFields';
 import _ from 'lodash';
 import * as actions from '../../actions';
+import { withRouter } from 'react-router';
 
 // define a functional jsx component
 // 因为SurveyFormReview是functional component 所以 this.props不工作
 // 所以argument就是deconstruct出来的 {onCancel} 放入SurveyFormReview的() parentheses 之中
 
 // 所以formValues 是从mapStateToProps return 出来的
-const SurveyFormReview = ( {onCancel, formValues, submitSurvey} ) => {
+// 这个history是 withRouter middleware会pass给你的
+const SurveyFormReview = ( {onCancel, formValues, submitSurvey, history} ) => {
 
     const reviewFields = _.map(formFields, (field) => {
         return (
@@ -34,8 +36,10 @@ const SurveyFormReview = ( {onCancel, formValues, submitSurvey} ) => {
                 Back
             </button>
 
+            {/* 所以把history这个object 再直接放入 submitSurvey这个method中 */}
             <button className="yellow darken-3 btn-flat right white-text"
-                onClick={() =>{submitSurvey(formValues)} }>
+                
+                onClick={() =>{submitSurvey(formValues, history)} }>
                 Send
                 <i className="material-icons right">email</i> 
             </button>
@@ -53,4 +57,4 @@ function mapStateToProps(state) {
 }
 
 // now your element can have all the props set up
-export default connect(mapStateToProps, actions)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));

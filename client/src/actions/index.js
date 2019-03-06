@@ -38,7 +38,14 @@ export const handleSurveys = () => async dispatch => {
 };
 
 // immediate action creator --> no need to dispatch in terms of middleware
-export const submitSurvey = (values) => {
+export const submitSurvey = ( values, history) => async dispatch => {
+        const res = await axios.post('/api/surveys', values);
+        // now  we also need to re-direct back to some page, 
+        // but 1. we dont have res.redirect 2. we dont have the react component to
+        // so we use history
 
-        return {type: SUBMIT_SURVEY};
+        history.push('/surveys')
+        
+        // res.data --> data is the default key for the backend
+        dispatch({type: SUBMIT_SURVEY, payload: res.data });
 };

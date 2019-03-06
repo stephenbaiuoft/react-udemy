@@ -60,11 +60,11 @@ function validate(values){
 
     // errors.emails --> setting the attribute
     // values.emails --> getting the value content
-    errors.emails = validateEmails(values.emails || '');    
+    errors.recipients = validateEmails(values.recipients || '');    
     _.each(surveyFields, ({name, label}) => {
         if (!values[name]) {
             // errors[name] --> putting down the {key_variable: value_content} 
-            errors[name] = 'You must provide' + label;
+            errors[name] = 'You must provide ' + label;
         }
     }); 
 
