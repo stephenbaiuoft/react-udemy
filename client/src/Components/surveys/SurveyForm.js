@@ -37,6 +37,7 @@ class SurveyForm extends Component {
     render() {
         return (
             <div>                    
+                {/*这里就是 this.props.onSurveySubmit is then called --> onSurveySubmit callback prop*/}
                 <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
                     {this.renderSurveyFields()}
 

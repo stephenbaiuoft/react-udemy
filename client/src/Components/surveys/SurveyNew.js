@@ -22,7 +22,8 @@ class SurveyNew extends Component {
         }
         // default case --> SurveyForm
         return (<SurveyForm
-
+            // onSurveySubmit is a callback prop!!!! important, which is defined by {} ==> an JS object
+            //, and passed to SurveyForm class, which would call onSurveySubmit()!!!!!
              onSurveySubmit={() => {this.setState({ showFormReview: true })}}
             />
         );
