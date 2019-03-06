@@ -1,5 +1,5 @@
 import axios from 'axios'; // axios to make ajax request
-import { FETCH_USER} from './types';
+import { FETCH_USER, SUBMIT_SURVEY} from './types';
 
 // fetchUser is an action creator, and 
 // we would use connect() module to put every action creator/selected ones 
@@ -35,4 +35,10 @@ export const handleSurveys = () => async dispatch => {
         const res = await axios.post('/api/surveys'); // axios is an ajax request
         // then we can dispatch the res 
         dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info                
+};
+
+// immediate action creator --> no need to dispatch in terms of middleware
+export const submitSurvey = (values) => {
+
+        return {type: SUBMIT_SURVEY};
 };

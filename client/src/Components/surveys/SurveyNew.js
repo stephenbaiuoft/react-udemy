@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
+
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 
@@ -42,5 +44,10 @@ class SurveyNew extends Component {
     }
 }
 
+// create the form and surveyForm values 
+// anyway, this would clear our the form content
+export default reduxForm({
 
-export default SurveyNew; 
+    form: 'surveyForm'
+
+})(SurveyNew); 
