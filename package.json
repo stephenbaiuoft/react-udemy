@@ -13,7 +13,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "webhook": "./sendgrid_webhook.sh" 
+    "webhook": "./sendgrid_webhook.sh"
   },
   "author": "Stephen Bai",
   "license": "ISC",
@@ -22,11 +22,13 @@
     "concurrently": "^4.1.0",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "materialize-css": "^1.0.0",
     "mongoose": "^5.4.0",
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "path-parser": "^4.2.0",
     "sendgrid": "^5.2.3",
     "stripe": "^6.25.1"
   }
