@@ -38,7 +38,7 @@ const SurveyFormReview = ( {onCancel, formValues, submitSurvey, history} ) => {
 
             {/* 所以把history这个object 再直接放入 submitSurvey这个method中 */}
             <button className="yellow darken-3 btn-flat right white-text"
-                
+                // submitSurvey --> action creator that triggers things
                 onClick={() =>{submitSurvey(formValues, history)} }>
                 Send
                 <i className="material-icons right">email</i> 

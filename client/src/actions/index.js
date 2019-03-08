@@ -47,5 +47,5 @@ export const submitSurvey = ( values, history) => async dispatch => {
         history.push('/surveys')
         
         // res.data --> data is the default key for the backend
-        dispatch({type: SUBMIT_SURVEY, payload: res.data });
+        dispatch({type: FETCH_USER, payload: res.data });
 };
