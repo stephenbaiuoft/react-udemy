@@ -27,16 +27,6 @@ export const handleToken = (token) => async dispatch => {
         
 };
 
-
-// this is the action creator for payments
-export const handleSurveys = () => async dispatch => {
-    
-        // for /api/stripe, we probably need to verify this token or something, otherwise 
-        const res = await axios.post('/api/surveys'); // axios is an ajax request
-        // then we can dispatch the res 
-        dispatch({type: FETCH_USER, payload: res.data}); // only res.data which contains the info                
-};
-
 // immediate action creator --> no need to dispatch in terms of middleware
 export const submitSurvey = ( values, history) => async dispatch => {
         const res = await axios.post('/api/surveys', values);

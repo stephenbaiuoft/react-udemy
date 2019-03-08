@@ -14,6 +14,10 @@ module.exports = (app) => {
         res.send('remember and have to do it 90 days');
     });
 
+    app.post('/api/surveys/webhooks', (req, res) => {
+        console.log(req.body);
+    });
+
     app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
         // read key values from req ES6 syntax
        const { title, subject, body, recipients } = req.body; 
