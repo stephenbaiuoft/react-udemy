@@ -11,8 +11,10 @@ const surveySchema = new Schema({
     yesforsure: {type: Number, default: 0},
     _user: {type: Schema.Types.ObjectId, ref: 'User'},
     dateSent: Date,
-    lastResponded: Date
-});
+    lastResponded: {type: Date, default: null}
+},
+    { strict: false }// default to false
+);
 
 // create a new collection called 'surveys' and use the surveySchema if the collection does not exist
 // mongoose will not re-create if the 'surveys' collection exists already

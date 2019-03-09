@@ -16,6 +16,8 @@ require('./services/passport'); // no exporting so no need to define module.expo
 const options = {
     useNewUrlParser: true
 };
+
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, options);
 
 const app = express(); // this app object is used to set up configuration that runs the business logic

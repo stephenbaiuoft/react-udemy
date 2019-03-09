@@ -45,23 +45,22 @@ module.exports = (app) => {
             .uniqBy('email', 'surveyId')
             .each(({ surveyId, email, choice }) => {
                 //console.log("<",email.trim(),"> <",choice.trim(),">");
-                var o_id = new ObjectId(surveyId);
-                Survey.updateMany({
-                    filter: {
-                        _id: o_id,
+                Survey.findOneAndUpdate(
+                    {
+                        "_id": surveyId,
                         recipients: {
                             $elemMatch: { email: email, responded: false }
                         }
                     },
-                    update: {
-                        $set: {title: "this is trying out for the new subject title change"}
+                    {
+                        "$set": {"title": "this is trying out for the new subject title change"}
                     }
-                }).exec((error, result) => {
+                ).exec((error, result) => {
                     if (!error) {
                         console.log(result);
                     }
 
-                });
+                }).save();
               })            
             .value();
 
