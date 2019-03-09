@@ -3,10 +3,12 @@ const _ = require('lodash');
 const Path = require('path-parser').default;
 
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId; 
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Mailer = require('../services/Mailer');
+
 
 // pull up the Survey schema from mongoose
 const Survey = mongoose.model('surveys');
@@ -34,6 +36,26 @@ module.exports = (app) => {
             })
             .compact()
             .uniqBy('email', 'surveyId')
+            .each(({ surveyId, email, choice }) => {
+                //console.log("<",email.trim(),"> <",choice.trim(),">");
+                var o_id = new ObjectId(surveyId);
+                Survey.updateMany({
+                    filter: {
+                        _id: o_id,
+                        recipients: {
+                            $elemMatch: { email: email, responded: false }
+                        }
+                    },
+                    update: {
+                        $set: {subject: "this is trying out for the new subject title change"}
+                    }
+                }).exec((error, result) => {
+                    if (!error) {
+                        console.log(result);
+                    }
+
+                });
+              })            
             .value();
 
         console.log(events);

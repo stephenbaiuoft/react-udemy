@@ -8,10 +8,10 @@ const surveySchema = new Schema({
     subject: String,
     recipients: [RecipientSchema],
     yes: {type: Number, default: 0},
-    no: {type: Number, default: 0},
+    yesforsure: {type: Number, default: 0},
     _user: {type: Schema.Types.ObjectId, ref: 'User'},
     dateSent: Date,
-    dateResponded: Date
+    lastResponded: Date
 });
 
 // create a new collection called 'surveys' and use the surveySchema if the collection does not exist
