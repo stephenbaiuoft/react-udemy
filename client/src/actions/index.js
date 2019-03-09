@@ -1,5 +1,5 @@
 import axios from 'axios'; // axios to make ajax request
-import { FETCH_USER, SUBMIT_SURVEY} from './types';
+import { FETCH_USER, FETCH_SURVEYS} from './types';
 
 // fetchUser is an action creator, and 
 // we would use connect() module to put every action creator/selected ones 
@@ -38,4 +38,13 @@ export const submitSurvey = ( values, history) => async dispatch => {
         
         // res.data --> data is the default key for the backend
         dispatch({type: FETCH_USER, payload: res.data });
+};
+
+
+export const fetchSurveys = () => async dispatch => {
+        const res = await axios.get('/api/surveys');
+
+        // res.data --> data is the default key for the backend
+        // payload is the key when corresponding reducer takes the data
+        dispatch({type: FETCH_SURVEYS, payload: res.data.surveys });
 };

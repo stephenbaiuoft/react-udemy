@@ -20,6 +20,13 @@ module.exports = (app) => {
         res.send('remember and have to do it 90 days');
     });
 
+    app.get('/api/surveys', requireLogin, async (req, res) => {
+        const surveys = await Survey.find({_user: req.user.id})
+                                    .select({recipients: false}); // dont include recipients
+
+        res.send({surveys});
+    });
+
     app.post('/api/surveys/webhooks', (req, res) => {
         const p = new Path('/api/surveys/:surveyId/:choice/');
         console.log(req.body);
@@ -47,7 +54,7 @@ module.exports = (app) => {
                         }
                     },
                     update: {
-                        $set: {subject: "this is trying out for the new subject title change"}
+                        $set: {title: "this is trying out for the new subject title change"}
                     }
                 }).exec((error, result) => {
                     if (!error) {

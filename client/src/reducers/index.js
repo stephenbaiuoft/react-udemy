@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import { reducer as reduxForm } from 'redux-form';
 import authReducer from './authReducer'; // default import
+import surveysReducer from './surveysReducer';
 
 
 // reducers that are tied to the store variable through
@@ -8,6 +9,7 @@ import authReducer from './authReducer'; // default import
 export default combineReducers(
     {
        auth: authReducer,  
-       form: reduxForm // reduxForm has to use form as the key to connect
+       form: reduxForm, // reduxForm has to use form as the key to connect
+       surveys: surveysReducer
     }
 );
